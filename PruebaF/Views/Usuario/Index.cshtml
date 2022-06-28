@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<PruebaF.Models.Usuario>
+@{
+    ViewData["Title"] = "Listado de Usuarios";
+}
+<div class="flex w-full md:w-2/3 ml-auto mr-auto justify-center my-5 lg:my-0 lg:justify-end">
+    <a asp-action="Create" asp-controller="Usuario"><button type="button"
+            class="bg-indigo-600 px-3 py-2 uppercase text-white mb-5 rounded-md hover:bg-indigo-700 cursor-pointer">
+            Agregar Usuario </button> </a>
+</div>
+<div class="relative w-full md:w-2/3 ml-auto mr-auto overflow-x-auto shadow-md sm:rounded-lg">
+    @if (Model.Count() > 0)
+    {
+        <table class="w-full text-md text-left">
+            <thead class="uppercase font-bold text-center tracking-wide bg-indigo-200">
+                <tr>
+                    <td class="border border-indigo-800 px-3 py-1">@Html.DisplayNameFor(m => m.Id)</td>
+                    <td class="border border-indigo-800 px-3 py-1">@Html.DisplayNameFor(m => m.Email)</td>
+                    <td class="border border-indigo-800 px-3 py-1">Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="border border-indigo-800 px-3 py-1">@item.Id</td>
+                        <td class="border border-indigo-800 px-3 py-1">@item.Email</td>
+                        <td class="border border-indigo-800 px-3 py-1 text-indigo-600 hover:text-indigo-700">
+                            @Html.ActionLink("Editar","Editar", new { id=item.Id}) | @Html.ActionLink("Eliminar",
+                    "Eliminar",
+                    new { id=item.Id})</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
